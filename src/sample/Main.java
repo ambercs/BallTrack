@@ -22,10 +22,16 @@ import javafx.scene.control.Button;
 EDITS:
 1/31/18 AMBER   adjusted sizing, added fields and buttons
                 on separate pane
-                help from: https://stackoverflow.com/questions/27758214/javafx-button-doesnt-work
-
+                help from https://stackoverflow.com/questions/27758214/javafx-button-doesnt-work
+2/01/18 AMBER   received data from fields
+                help from https://stackoverflow.com/questions/32219536/javafx-getting-input-from-textfield
  */
 public class Main extends Application {
+
+    private static int redSpeed = 45;
+    private static int blueSpeed = 45;
+    private static int greenSpeed = 45;
+    private static int yellowSpeed = 45;
 
     public static void main(String[] args) {
         launch(args);
@@ -62,19 +68,36 @@ public class Main extends Application {
         //Buttons with fields for speed of nodes
         paneRight.getChildren().add(new Label("Red Speed:"));
         TextField firstValue = new TextField();
+        firstValue.setText(""+redSpeed);
         paneRight.getChildren().add(firstValue);
+
 
         paneRight.getChildren().add(new Label("Blue Speed:"));
         TextField secondValue = new TextField();
+        secondValue.setText(""+blueSpeed);
         paneRight.getChildren().add(secondValue);
 
         paneRight.getChildren().add(new Label("Green Speed:"));
         TextField thirdValue = new TextField();
+        thirdValue.setText(""+greenSpeed);
         paneRight.getChildren().add(thirdValue);
 
         paneRight.getChildren().add(new Label("Yellow Speed:"));
         TextField fourthValue = new TextField();
+        fourthValue.setText(""+yellowSpeed);
         paneRight.getChildren().add(fourthValue);
+
+        Button reconfigButton = new Button("Change Speed");
+        paneRight.getChildren().add(reconfigButton);
+
+        reconfigButton.setOnAction(e -> {
+            redSpeed = Integer.valueOf(firstValue.getText());
+            blueSpeed = Integer.valueOf(secondValue.getText());
+            greenSpeed = Integer.valueOf(thirdValue.getText());
+            yellowSpeed = Integer.valueOf(fourthValue.getText());
+
+            System.out.println(redSpeed+" "+blueSpeed+" "+greenSpeed+" "+yellowSpeed);
+        });
 
         //Now display
         root.setRight(paneRight);
