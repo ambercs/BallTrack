@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 EDITS:
 1/31/18 AMBER   adjusted sizing, added fields and buttons
                 on separate pane
+                help from: https://stackoverflow.com/questions/27758214/javafx-button-doesnt-work
 
  */
 public class Main extends Application {
