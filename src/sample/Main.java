@@ -47,6 +47,10 @@ public class Main extends Application {
         Canvas canvas = new Canvas(400, 300);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapes(gc);
+        drawBall(gc, "red");
+        drawBall(gc, "blue");
+        drawBall(gc, "green");
+        drawBall(gc, "yellow");
 
         //Adds the bowtie to center pane
         paneCenter.getChildren().add(canvas);
@@ -87,9 +91,11 @@ public class Main extends Application {
         fourthValue.setText(""+yellowSpeed);
         paneRight.getChildren().add(fourthValue);
 
+        //Button to change the default speeds
         Button reconfigButton = new Button("Change Speed");
         paneRight.getChildren().add(reconfigButton);
 
+        //Receive new fields on Change Speed button press
         reconfigButton.setOnAction(e -> {
             redSpeed = Integer.valueOf(firstValue.getText());
             blueSpeed = Integer.valueOf(secondValue.getText());
@@ -105,12 +111,39 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    //Set the four balls for the simulation
+    private void drawBall(GraphicsContext gc, String color) {
+        if(color.equals("red")){
+            gc.setFill(Color.RED);
+            gc.setStroke(Color.RED);
+            gc.fillOval(28,74,5,5);
+        }
+        else if(color.equals("blue")){
+            gc.setFill(Color.BLUE);
+            gc.setStroke(Color.BLUE);
+            gc.fillOval(28,172,5,5);
+        }
+        else if(color.equals("green")){
+            gc.setFill(Color.GREEN);
+            gc.setStroke(Color.GREEN);
+            gc.fillOval(268,74,5,5);
+        }
+        else if(color.equals("yellow")){
+            gc.setFill(Color.YELLOW);
+            gc.setStroke(Color.YELLOW);
+            gc.fillOval(268,172,5,5);
+        }
+
+
+    }
+
     //Draws shape of the bowtie
     private void drawShapes(GraphicsContext gc) {
         //gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLACK);
+        gc.setStroke(Color.ORANGE);
         gc.setLineWidth(2);
         gc.strokeLine(100, 125, 200, 125);
+        gc.setStroke(Color.BLACK);
         gc.strokePolygon(new double[]{100,30,30}, new double[]{125,75,175},3);
         gc.strokePolygon(new double[]{200,270,270}, new double[]{125,75,175},3);
     }
